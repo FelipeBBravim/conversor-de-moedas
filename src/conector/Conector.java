@@ -7,20 +7,16 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class Conector {
-    private final String ApiKey = "df912a99443df99361cc50a7";
-    private String moedaInicial;
-    private String moedaFinal;
-    private String enderecoGet = "https://v6.exchangerate-api.com/v6/"
-            + ApiKey
-            + "/pair/"
-            + moedaInicial
-            + "/"
-            + moedaFinal;
-
+    private String ApiKey = "df912a99443df99361cc50a7";
+    private String enderecoGet;
 
     public Conector(String moedaInicial, String moedaFinal) {
-        this.moedaInicial = moedaInicial;
-        this.moedaFinal = moedaFinal;
+        this.enderecoGet = "https://v6.exchangerate-api.com/v6/%s/pair/%s/%s"
+                .formatted(ApiKey, moedaInicial, moedaFinal);
+    }
+
+    public String getEnderecoGet() {
+        return enderecoGet;
     }
 
     public String setConexao() throws IOException, InterruptedException {
