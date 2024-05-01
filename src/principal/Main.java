@@ -1,11 +1,10 @@
 package principal;
 
-import conector.Conector;
 import modelos.Menu;
 import modelos.Moedas;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,33 +13,38 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean rev = false;
         int mI = 0, mF = 0;
+        double valor = 0;
 
         while (!rev) {
             System.out.println(menu.getMenu1());
             System.out.println(menu.getMenuMoedas());
-            mI = scanner.nextInt();
-            if (String.valueOf(mI).matches("[1-6]")) {
-                rev = true;
-            } else {
-                System.out.println("Digite uma opção válida.");
+            try {
+                mI = scanner.nextInt();
+            } catch (InputMismatchException ex){
+                System.out.println("Por favor, digite um número dentre as opções válidas.");
             }
-        }
 
-        rev = false;
-
-        while (!rev) {
             System.out.println(menu.getMenu2());
             System.out.println(menu.getMenuMoedas());
-            mF = scanner.nextInt();
-            if (String.valueOf(mF).matches("[1-6]")) {
+            try {
+                mF = scanner.nextInt();
+            } catch (InputMismatchException ex){
+                System.out.println("Por favor, digite um número dentre as opções válidas.");
+            }
+
+            System.out.println(menu.getMenu3());
+            try {
+                valor = scanner.nextDouble();
+            } catch (InputMismatchException ex){
+                System.out.println("Por favor, digite um valor válido.");
+            }
+
+            if (conferindo(mI) && conferindo(mF)){
                 rev = true;
             } else {
-                System.out.println("Digite uma opção válida.");
+                System.out.println("Escolha uma moeda válida");
             }
         }
-
-        System.out.println(menu.getMenu3());
-        double valor = scanner.nextDouble();
 
         Moedas moedas = new Moedas(String.valueOf(mI), String.valueOf(mF), valor);
         moedas.definindoMoedaInicial(moedas.getMoedaInicial());
@@ -48,5 +52,13 @@ public class Main {
 
         menu.getMenuFinal(moedas.getValorInicial(), moedas.getMoedaInicial(), moedas.getValorFinal(), moedas.getMoedaFinal());
 
+    }
+
+    private static boolean conferindo(int a) {
+        if (String.valueOf(a).matches("[1-6]")) {;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

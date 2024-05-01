@@ -1,9 +1,5 @@
 package modelos;
 
-import com.google.gson.internal.bind.util.ISO8601Utils;
-
-import java.util.Scanner;
-
 public class Menu {
     private String menuMoedas = """
             1) Peso argentino
@@ -17,19 +13,27 @@ public class Menu {
             ****************************************
             Seja bem vindo(a) ao conversor de moedas
             
-            Escolha a moeda que você quer converter:""";
+            Escolha a moeda que você quer converter:
+            ----------------------------------------""";
 
     private String menu2 = """
             ****************************************
-            Escolha a moeda que você quer o valor:""";
+            Escolha a moeda que você quer o valor:
+            ----------------------------------------""";
 
     private String menu3 = """
             ****************************************
-            Qual o valor que você quer converter:""";
+            Qual o valor que você quer converter:
+            ----------------------------------------""";
+
+    private String menu4 = """
+            ****************************************
+            %.2f de %s equivalem a %.2f de %s.
+            ****************************************""";
 
     private String menuFinal = """
             ****************************************
-            %.2f de %s equivalem a %.2f de %s""";
+            Escolha 1 para uma nova conversão ou 0 para sair.""";
 
     public String getMenuMoedas() {
         return menuMoedas;
@@ -48,6 +52,6 @@ public class Menu {
     }
 
     public void getMenuFinal(double valorInicial, String moedaInicial, double valorFinal, String moedaFinal){
-        System.out.printf(menuFinal, valorInicial, moedaInicial, valorFinal, moedaFinal);
+        System.out.printf(menu4, valorInicial, moedaInicial, valorFinal, moedaFinal);
     }
 }
