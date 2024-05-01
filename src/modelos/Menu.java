@@ -51,7 +51,11 @@ public class Menu {
         return menu3;
     }
 
-    public void getMenuFinal(double valorInicial, String moedaInicial, double valorFinal, String moedaFinal){
-        System.out.printf(menu4, valorInicial, moedaInicial, valorFinal, moedaFinal);
+    public String getMenu4(double valorInicial, String moedaInicial, double valorFinal, String moedaFinal){
+        return menu4.formatted(valorInicial, moedaInicial, valorFinal, moedaFinal);
+    }
+
+    public String getMenuFinal() {
+        return menuFinal;
     }
 }

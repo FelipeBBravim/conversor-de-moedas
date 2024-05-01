@@ -9,49 +9,67 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Menu menu = new Menu();
-        Scanner scanner = new Scanner(System.in);
-        boolean rev = false;
-        int mI = 0, mF = 0;
-        double valor = 0;
+        int opcao = 1;
 
-        while (!rev) {
-            System.out.println(menu.getMenu1());
-            System.out.println(menu.getMenuMoedas());
-            try {
-                mI = scanner.nextInt();
-            } catch (InputMismatchException ex){
-                System.out.println("Por favor, digite um número dentre as opções válidas.");
+        while (opcao == 1) {
+            Menu menu = new Menu();
+            Scanner scanner = new Scanner(System.in);
+            boolean rev = false;
+            int mI = 0, mF = 0;
+            double valor = 0;
+
+            while (!rev) {
+                System.out.println(menu.getMenu1());
+                System.out.println(menu.getMenuMoedas());
+                try {
+                    mI = scanner.nextInt();
+                } catch (InputMismatchException ex) {
+                    System.out.println("Por favor, digite um número dentre as opções válidas.");
+                    mI = 0;
+                }
+
+                System.out.println(menu.getMenu2());
+                System.out.println(menu.getMenuMoedas());
+                try {
+                    mF = scanner.nextInt();
+                } catch (InputMismatchException ex) {
+                    System.out.println("Por favor, digite um número dentre as opções válidas.");
+                    mF = 0;
+                }
+
+                System.out.println(menu.getMenu3());
+                try {
+                    valor = scanner.nextDouble();
+                } catch (InputMismatchException | NumberFormatException ex) {
+                    System.out.println("Por favor, digite um valor válido.");
+                }
+
+                if (conferindo(mI) && conferindo(mF)) {
+                    rev = true;
+                } else {
+                    System.out.println("Escolha uma moeda válida");
+                }
             }
 
-            System.out.println(menu.getMenu2());
-            System.out.println(menu.getMenuMoedas());
-            try {
-                mF = scanner.nextInt();
-            } catch (InputMismatchException ex){
-                System.out.println("Por favor, digite um número dentre as opções válidas.");
-            }
+            Moedas moedas = new Moedas(String.valueOf(mI), String.valueOf(mF), valor);
+            moedas.definindoMoedaInicial(moedas.getMoedaInicial());
+            moedas.definindoMoedaFinal(moedas.getMoedaFinal());
 
-            System.out.println(menu.getMenu3());
-            try {
-                valor = scanner.nextDouble();
-            } catch (InputMismatchException ex){
-                System.out.println("Por favor, digite um valor válido.");
-            }
+            System.out.println(menu.getMenu4(moedas.getValorInicial(),
+                    moedas.getMoedaInicial(),
+                    moedas.getValorFinal(),
+                    moedas.getMoedaFinal()));
 
-            if (conferindo(mI) && conferindo(mF)){
-                rev = true;
-            } else {
-                System.out.println("Escolha uma moeda válida");
+            System.out.println(menu.getMenuFinal());
+            try{
+                opcao = scanner.nextInt();
+            } catch (Exception ex) {
+                System.out.println("Digite um valor válido");
             }
         }
 
-        Moedas moedas = new Moedas(String.valueOf(mI), String.valueOf(mF), valor);
-        moedas.definindoMoedaInicial(moedas.getMoedaInicial());
-        moedas.definindoMoedaFinal(moedas.getMoedaFinal());
-
-        menu.getMenuFinal(moedas.getValorInicial(), moedas.getMoedaInicial(), moedas.getValorFinal(), moedas.getMoedaFinal());
-
+        System.out.println("Obrigado por conhecer o meu conversor de moeda.");
+        System.out.println("Desenvolvido por: Felipe Bravim");
     }
 
     private static boolean conferindo(int a) {
