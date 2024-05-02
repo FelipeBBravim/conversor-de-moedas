@@ -1,4 +1,4 @@
-<h1 align="center> Conversor de Moedas </h1>
+<h1> align="center> Conversor de Moedas </h1>
 
 Projeto de desafio da Alura para a sexta turma ONE (projeto de colaboração entre Alura e Oracle) para colocar em prática conhecimentos adquiridos em Java.
 O programa consiste em um conversor de moedas usando informações provenientes de uma API de licença livre e com interação com usuário pelo terminal.
