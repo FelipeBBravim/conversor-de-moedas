@@ -2,6 +2,7 @@ package modelos;
 
 import com.google.gson.Gson;
 import conector.Conector;
+import persistenciaDeDados.Cotacao;
 
 import java.io.IOException;
 
@@ -33,7 +34,8 @@ public class Moedas {
         Conector conector = new Conector(this.moedaInicial,this.moedaFinal);
         Gson gson = new Gson();
         double cotacao = gson.fromJson(conector.setConexao(), Cotacao.class).conversion_rate();
-        return valorFinal = valorInicial * cotacao;
+        this.valorFinal = valorInicial * cotacao;
+        return this.valorFinal;
     }
 
     public void definindoMoedaInicial(String moeda){
@@ -44,7 +46,7 @@ public class Moedas {
             case "4" -> this.moedaInicial = "CLP";
             case "5" -> this.moedaInicial = "COP";
             case "6" -> this.moedaInicial = "USD";
-        };
+        }
     }
 
     public void definindoMoedaFinal(String moeda){
@@ -55,6 +57,6 @@ public class Moedas {
             case "4" -> this.moedaFinal = "CLP";
             case "5" -> this.moedaFinal = "COP";
             case "6" -> this.moedaFinal = "USD";
-        };
+        }
     }
 }

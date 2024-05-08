@@ -4,7 +4,6 @@ import modelos.Menu;
 import modelos.Moedas;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -21,28 +20,14 @@ public class Main {
             while (!rev) {
                 System.out.println(menu.getMenu1());
                 System.out.println(menu.getMenuMoedas());
-                try {
-                    mI = scanner.nextInt();
-                } catch (InputMismatchException ex) {
-                    System.out.println("Por favor, digite um número dentre as opções válidas.");
-                    mI = 0;
-                }
+                mI = scanner.nextInt();
 
                 System.out.println(menu.getMenu2());
                 System.out.println(menu.getMenuMoedas());
-                try {
-                    mF = scanner.nextInt();
-                } catch (InputMismatchException ex) {
-                    System.out.println("Por favor, digite um número dentre as opções válidas.");
-                    mF = 0;
-                }
+                mF = scanner.nextInt();
 
                 System.out.println(menu.getMenu3());
-                try {
-                    valor = scanner.nextDouble();
-                } catch (InputMismatchException | NumberFormatException ex) {
-                    System.out.println("Por favor, digite um valor válido.");
-                }
+                valor = scanner.nextDouble();
 
                 if (conferindo(mI) && conferindo(mF)) {
                     rev = true;
@@ -73,10 +58,6 @@ public class Main {
     }
 
     private static boolean conferindo(int a) {
-        if (String.valueOf(a).matches("[1-6]")) {;
-            return true;
-        } else {
-            return false;
-        }
+        return String.valueOf(a).matches("[1-6]");
     }
 }
